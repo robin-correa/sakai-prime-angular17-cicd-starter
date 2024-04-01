@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+
+  build:
+    commands:
+      - echo "Building Sakai Prime Angular app..."
+      - npm run build
+      
+  post_build:
+    commands:
+      - echo "Uploading / Syncing to S3"
+      - aws s3 sync ./dist/sakai-ng $S3_BUCKET
